@@ -4,7 +4,13 @@ f = open('test.json',)
 # returns JSON object as
 # a dictionary
 data = json.load(f)
-#print(data['segments'][1]['words'][1]['text']) 
+
+for speakers in data['speakers']:
+    print(speakers['name'])
+    print(speakers['spkid'])
+allSpeakers = {
+    "name": 
+}
 
 for segments in data['segments']:
     #print(segments['words'])
