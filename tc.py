@@ -1,12 +1,19 @@
 # converter from frames, seconds to frames and the other way around
 
-FPS = 25
-someframes = 2373
+fps = 25
+someframes = 15546239
 
-secs = someframes // FPS
 
-mins = secs // 60
+def framestotc(someframes, fps):
 
-hours = mins // 60
-print("SECS = " + str(secs) + "\nMINS = " + str(mins))
+    s, f = divmod(someframes, fps)
+    m, s = divmod(s, 60)
+    h, m = divmod(m, 60)
+    d, h = divmod(h, 24)
+    return '{1:02d}:{2:02d}:{3:02d}:{4:02d}'.format(d, h,m,s,f)
+
+
+
+
+
 

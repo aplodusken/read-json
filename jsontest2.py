@@ -1,4 +1,8 @@
 import json
+import tc
+
+
+print(tc.framestotc(100, 25))
 
 # declare constants
 SENTENCELEN = 250
