@@ -1,15 +1,19 @@
-# v0.2
+# v0.3
 import json
 import tc
 from pathlib import Path
+import sys
 
-f = open('test.json',)
+#print( 'IN KOMMER', str(sys.argv[1]))
+
+f = open(sys.argv[1],)
 # print(tc.framestotc(100, 25))
 # returns JSON object as
 # a dictionary
 data = json.load(f)
 # Closing file
 f.close()
+
 
 # declare constants
 # varaiable for future feature to add sentence length limitation 
