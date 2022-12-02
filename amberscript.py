@@ -3,6 +3,8 @@ import json
 import tc
 from pathlib import Path
 import sys
+import codecs
+
 
 #print( 'IN KOMMER', str(sys.argv[1]))
 
@@ -35,7 +37,7 @@ MARKER = 'White'
 # test print
 #print(destfilename)
 
-f = open(destfilename, "a")
+f = codecs.open(destfilename, "a", "ISO-8859-1")
 # declare the dictionare allSpeakers with names and speakers
 allSpeakers = {}
 senlen = 0
@@ -56,7 +58,7 @@ for segments in data['segments']:
             senlen = 0
             f.write(row  + "\n")
     
-    row = row.replace("å", "�").replace("Å", "�").replace("ä", "�").replace("Ä", "�").replace("ö", "�").replace("Ö", "�")
+    #row = row.replace("å", "�").replace("Å", "�").replace("ä", "�").replace("Ä", "�").replace("ö", "�").replace("Ö", "�")
     print(row  + "\n")
     f.write(row  + "\n")
 
