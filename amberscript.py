@@ -16,11 +16,13 @@ f.close()
 
 
 # declare constants
-# varaiable for future feature to add sentence length limitation 
+# variable for future feature to add sentence length limitation 
 SENTENCELEN = 250
 # get the offset from the json file
+
+
 tcoffset = data['startTimeOffset']
-# Variable to store name of destinationfile
+# Variable to store name of destination file
 orgdestfilename = Path(str("/home/micke/git/read-json/" + data['filename']))
 destfilename = orgdestfilename.with_suffix('.txt')
 # Variable to store FPS value
@@ -47,10 +49,15 @@ for segments in data['segments']:
     row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t"
     
     for words in segments['words']:
-       
+        senlen =+ len(words['text'])
         row = row + " " + words['text']
-       
-    print(row + "\n")
+        if senlen > SENTENCELEN:
+            row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t"
+            senlen = 0
+            f.write(row  + "\n")
+    
+    row = row.replace("å", "�").replace("Å", "�").replace("ä", "�").replace("Ä", "�").replace("ö", "�").replace("Ö", "�")
+    print(row  + "\n")
     f.write(row  + "\n")
 
 
