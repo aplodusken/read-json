@@ -36,8 +36,8 @@ MARKER = 'White'
 
 # test print
 #print(destfilename)
-
-f = codecs.open(destfilename, "a", "ISO-8859-1")
+# ISO-8859-1
+f = codecs.open(destfilename, "a", "mac-roman")
 # declare the dictionare allSpeakers with names and speakers
 allSpeakers = {}
 senlen = 0
