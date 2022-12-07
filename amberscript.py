@@ -48,19 +48,33 @@ for speakers in data['speakers']:
     allSpeakers[speakers['spkid']] = speakers['name']
 
 for segments in data['segments']:
+
     row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t"
     
     for words in segments['words']:
-        senlen =+ len(words['text'])
-        row = row + " " + words['text']
-        if senlen > SENTENCELEN:
+        
+        
+        if senlen == 0:
             row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t"
-            senlen = 0
+
+        senlen += len(words['text'])
+        row = row + " " + words['text']
+
+        print(senlen)
+        if senlen > SENTENCELEN:
+            print(row  + "\n")
             f.write(row  + "\n")
-    
-    #row = row.replace("å", "�").replace("Å", "�").replace("ä", "�").replace("Ä", "�").replace("ö", "�").replace("Ö", "�")
+            senlen = 0
+
+        
+
     print(row  + "\n")
     f.write(row  + "\n")
+    senlen = 0
+    
+    #row = row.replace("å", "�").replace("Å", "�").replace("ä", "�").replace("Ä", "�").replace("ö", "�").replace("Ö", "�")
+    
+#    f.write(row  + "\n")
 
 
 f.close()
