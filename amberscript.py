@@ -1,4 +1,4 @@
-# v0.3
+# v0.4
 import json
 import tc
 from pathlib import Path
@@ -19,7 +19,7 @@ f.close()
 
 # declare constants
 # variable for future feature to add sentence length limitation 
-SENTENCELEN = 250
+SENTENCELEN = 230
 # get the offset from the json file
 
 
@@ -49,13 +49,13 @@ for speakers in data['speakers']:
 
 for segments in data['segments']:
 
-    row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t"
+    row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t" + "(" + allSpeakers[segments['speaker']] + ") "
     
     for words in segments['words']:
         
         
         if senlen == 0:
-            row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t"
+            row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t" + "(" + allSpeakers[segments['speaker']] + ") "
 
         senlen += len(words['text'])
         row = row + " " + words['text']
@@ -78,5 +78,3 @@ for segments in data['segments']:
 
 
 f.close()
-
-  
