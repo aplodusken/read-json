@@ -60,15 +60,15 @@ for segments in data['segments']:
         senlen += len(words['text'])
         row = row + " " + words['text']
 
-        print(senlen)
+        #print(senlen)
         if senlen > SENTENCELEN:
-            print(row  + "\n")
+            #print(row  + "\n")
             f.write(row  + "\n")
             senlen = 0
 
         
 
-    print(row  + "\n")
+    #print(row  + "\n")
     f.write(row  + "\n")
     senlen = 0
     
@@ -78,3 +78,5 @@ for segments in data['segments']:
 
 
 f.close()
+
+print("KLAR!")
