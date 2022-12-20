@@ -1,4 +1,4 @@
-def frames_to_timecode(frames, fps=24):
+def frames_to_timecode(frames, fps=25):
     s, f = divmod(frames, fps)
     m, s = divmod(s, 60)
     h, m = divmod(m, 60)
