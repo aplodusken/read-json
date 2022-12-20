@@ -25,7 +25,8 @@ SENTENCELEN = 230
 
 tcoffset = data['startTimeOffset']
 # Variable to store name of destination file
-orgdestfilename = Path(str("/home/micke/git/read-json/" + data['filename']))
+# orgdestfilename = Path(str("/home/micke/git/read-json/" + data['filename']))
+orgdestfilename = Path(str(data['filename']))
 destfilename = orgdestfilename.with_suffix('.txt')
 # Variable to store FPS value
 FPS = 25
@@ -35,7 +36,7 @@ TRACK = 'V1'
 MARKER = 'White'
 
 # test print
-#print(destfilename)
+print(destfilename)
 # ISO-8859-1
 f = codecs.open(destfilename, "a", "mac-roman")
 # declare the dictionare allSpeakers with names and speakers
@@ -53,9 +54,10 @@ for segments in data['segments']:
     
     for words in segments['words']:
         
-        
+        #print(words['start'])
+
         if senlen == 0:
-            row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t" + "(" + allSpeakers[segments['speaker']] + ") "
+            row = allSpeakers[segments['speaker']] + "\t" + str(tc.framestotc(int(words['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t" + "(" + allSpeakers[segments['speaker']] + ") "
 
         senlen += len(words['text'])
         row = row + " " + words['text']
