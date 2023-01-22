@@ -1,6 +1,6 @@
-# v0.4
+# v0.5
 import json
-import tc
+# import tc
 from pathlib import Path
 import sys
 import codecs
@@ -51,22 +51,23 @@ row = ''
 for speakers in data['speakers']:
     allSpeakers[speakers['spkid']] = speakers['name']
 
-print(allSpeakers)
+# print(allSpeakers)
 
+# iterat over json data
 for segments in data['segments']:
-
+    # set the formatting of the start row of data the avid markers file
     row = allSpeakers[segments['speaker']] + "\t" + str(framestotc(float(segments['words'][0]['start']+tcoffset) * 25, FPS)) + "\t" + TRACK + "\t" + MARKER + "\t" + "(" + allSpeakers[segments['speaker']] + ") "
-    
+    # Add sentence word by word from json data
     for words in segments['words']:
         
 
         row = row + " " + words['text']
 
-
+    # write row of data to file
     f.write(row  + "\n")
 
     
-
+# close the file
 f.close()
 
 print("KLAR!")
