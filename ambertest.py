@@ -19,13 +19,9 @@ f = open(sys.argv[1],)
 
 # returns JSON object as a dictionary and store it in the data variable
 data = json.load(f)
+print(data)
 # Closing file f
 f.close()
-
-
-# declare constants
-# variable for future feature to add sentence length limitation 
-SENTENCELEN = 230
 
 # get the offset from the json file
 tcoffset = data['startTimeOffset']
